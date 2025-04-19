@@ -60,6 +60,8 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/rest-api:v1.0.0
     
       - name: Notify Slack (Success)
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
         run: |
            curl -X POST -H 'Content-type: application/json' --data "{
            \"text\": \"✅ Deployment to *prod* succeeded!!\n🛠️ Build Number: $BUILD_NUMBER\",
